@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.16 FATAL_ERROR)
 project(muon_telescope)
 
 #Encontrar el paquete de geant e incluirlo
+find_package(Geant4 REQUIRED ui_all vis_all)
 #El cual debe encontrarse en el PATH
 find_package(${Geant4_USE_FILE})
 include(${Geant4_USE_FILE})
