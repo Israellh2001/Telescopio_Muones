@@ -9,6 +9,7 @@ find_package(Geant4 REQUIRED ui_all vis_all)
 find_package(${Geant4_USE_FILE})
 include(${Geant4_USE_FILE})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${Geant4_INCLUDE_DIR})
 #De la carpeta src incluir todos los archivos con terminación .cc
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 #De la carpeta include incluir todos los archivos con terminacion .hh
