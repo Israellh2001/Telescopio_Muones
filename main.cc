@@ -7,12 +7,14 @@
 
 #include "DetectorConstruction.hh"
 #include "PhysicsList.hh"
+#include "ActionInitializer.hh"
 
 int main(int argc, char** argv){
 	G4RunManager *runManager = new G4RunManager();
 
 	runManager -> SetUserInitialization(new DetectorConstruction());
 	runManager -> SetUserInitialization(new PhysicsList());
+	runManager -> SetUserInitialization(new ActionInitializer());
 
 	runManager -> Initialize();
 
@@ -25,6 +27,10 @@ int main(int argc, char** argv){
 
 	UImanager -> ApplyCommand("/vis/open OGL");
 	UImanager -> ApplyCommand("/vis/drawVolume");
+
+	UImanager -> ApplyCommand("/vis/viewer/set/autoRefresh true");
+	UImanager -> ApplyCommand("/vis/scene/add/trajectories smooth");
+	UImanager -> ApplyCommand("/vis/scene/endOfEventAction accumulate");
 
 	ui -> SessionStart();
 
