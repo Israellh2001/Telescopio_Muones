@@ -9,6 +9,8 @@
 #include "G4PVPlacement.hh"
 #include "G4NistManager.hh"
 
+#include "SensitiveDetector.hh"
+
 class DetectorConstruction : public G4VUserDetectorConstruction{
 	
 	public:
@@ -20,8 +22,12 @@ class DetectorConstruction : public G4VUserDetectorConstruction{
 		//Funcion donde ira toda la descripción de la geometria
 		virtual G4VPhysicalVolume *Construct();
 
+		void ConstructSDandField();
 	private:
-
+		G4LogicalVolume *stripX1Logical;
+		G4LogicalVolume *stripY1Logical;
+		G4LogicalVolume *stripX2Logical;
+		G4LogicalVolume *stripY2Logical;
 
 
 };

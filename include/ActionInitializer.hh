@@ -4,6 +4,7 @@
 #include "G4VUserActionInitialization.hh"
 
 #include "PrimaryGeneratorAction.hh"
+#include "RunAction.hh"
 
 class ActionInitializer : public G4VUserActionInitialization{
 	
