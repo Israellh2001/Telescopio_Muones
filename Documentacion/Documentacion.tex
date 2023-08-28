@@ -9,10 +9,26 @@
     \tableofcontents
 
     \section{Introducción}
-        Para correr el programa bla bla bla
+        Este programa fue realizado para estudiar el comportamiento de los muones generados por rayos cosmicos cuando atraviesan un material en concreto. Para ello se creo una serie de \emph{Drift Chambers} con las cuales poder deducir las trayectorias de los muones y analizar los cambios al atravezar el material.
+
+	El simulador utiliza la serie de librerias en \verb|C++| desarrolladas en \emph{CERN}, originalmente para \verb|Fortran|, conocida como \verb|Geant4|.
+
+	Para este programa se recomienda utilizar una distribución de \verb|GNU/Linux| con los siguientes programas instalados:
+
+	\begin{itemize}
+		\item \verb|Geant4| version 11.0.0 o mayor
+		\item Algun compilador para \verb|C++| preferentemente \verb|g++| version 12.0.0 o mayor.
+		\item La interfaz \verb|cmake| version 3.0.0 o mayor.
+	\end{itemize}
 
     \section{Comó compilar y correr el programa}
-        Introduccion
+    	Una vez cumplidos los requisiston ya expuestos se debera estar seguro de tener las librerías de \verb|Geant4| indicadas en el \verb|PATH| para quen la compilación se complete con exito. Los pasos para compilar el programa son los siguientes:
+
+	\begin{enumerate}
+		\item Crear un directorio llamado \verb|build| en la carpeta raiz del programa.
+		\item Correr el siguiente comando \verb|$ cmake ..|, el programa no requiere ninguna otra configuración extra.
+		\item Correr el siguiente comando \verb|$ make| esto comenzara la compilación del programa y arrojara un ejecutable llamado \verb|telescopio| que sera el programa.
+	\end{enumerate}
 
     \section{Clases}
         En el programa hay muchas clases bla bla vbla
