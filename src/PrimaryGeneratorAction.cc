@@ -19,8 +19,8 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event *event){
 		// -2.03<x<2.03 y -2.03<y<-2.03
 		// Con 4GeV de energía
 		case 1:
-			G4double y = 2.03*(G4UniformRand()-0.5)/2*m;	
-			G4double x = 2.03*(G4UniformRand()-0.5)/2*m;	
+			G4double y = (2.03/2)*(G4UniformRand()-0.5)*m;	
+			G4double x = (2.03/2)*(G4UniformRand()-0.5)*m;	
 			G4ThreeVector pos(x,y,4.06*m);	
 			G4ThreeVector mom(0,0,-1);
 			

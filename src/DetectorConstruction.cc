@@ -23,10 +23,11 @@ G4VPhysicalVolume *DetectorConstruction::Construct(){
 	double sampleGap = 1;
 	double boxesHeight = (worldHeight - sampleGap)/2;
 	double boxesWidth = worldWidth;
-	double chamberWidth = worldWidth/2;
+	double chamberWidth = (worldWidth+0.3)/2;
 	double chamberHeight = 0.005;
 	double extra = 0;
-	
+
+
 	//Caja madre
 	G4Box *solidWorld = new G4Box("solidWorld", worldWidth*m, worldWidth*m, worldHeight*m);
 	G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
@@ -61,7 +62,7 @@ G4VPhysicalVolume *DetectorConstruction::Construct(){
 
 		new G4PVPlacement(0,
 			G4ThreeVector(0,0,(boxesHeight - i*(1 + 3*chamberHeight))*m), chamberY1Logical, "chamberY1Physical",
-			firstLogical, false, 20+i, true);
+			firstLogical, false, 10+i, true);
 	}
 
 	// Dentro de la segunda caja vamos a declarar las driftchambers
@@ -75,51 +76,52 @@ G4VPhysicalVolume *DetectorConstruction::Construct(){
 	for(int i = 0; i<3; i++){ 
 		new G4PVPlacement(0,
 			G4ThreeVector(0,0,(boxesHeight - (i + (i+0.5)*chamberHeight))*m), chamberX2Logical, "chamberX2Physical",
-			secondLogical, false,31+i, true);
+			secondLogical, false,20+i, true);
 
 		new G4PVPlacement(0,
 			G4ThreeVector(0,0,(boxesHeight - (i + 3*(i+0.5)*chamberHeight))*m), chamberY2Logical, "chamberY2Physical",
-			secondLogical, false, 41+i, true);
+			secondLogical, false, 20+i, true);
 	}
 	
 	//For para colocar las strip en cada primer grupo de chambers
-	double stripWidth = 0.05;
+	double stripWidth = 0.005;
+	double stripHeight = chamberHeight/100;
 	double pitch = 0.0;
 	int N = int( chamberWidth/(stripWidth+pitch)); 
 
-	G4Box *stripY1Box = new G4Box("stripY1Box", stripWidth*m, chamberWidth*m, chamberHeight/2*m);
+	G4Box *stripY1Box = new G4Box("stripY1Box", stripWidth*m, chamberWidth*m, stripHeight*m);
 	stripY1Logical = new G4LogicalVolume(stripY1Box, chamberMat, "stripY1Logical");
 
-	G4Box *stripX1Box = new G4Box("stripX1Box", chamberWidth*m, stripWidth*m, chamberHeight/2*m);
+	G4Box *stripX1Box = new G4Box("stripX1Box", chamberWidth*m, stripWidth*m, stripHeight*m);
 	stripX1Logical = new G4LogicalVolume(stripX1Box, chamberMat, "stripX1Logical");
 
 	for(int i = 0; i<N; i++){
 		new G4PVPlacement(0,
 			G4ThreeVector(((pitch + stripWidth)*(2*i+1) - (chamberWidth+extra))*m,0,0), stripY1Logical, "stripY1Physical",
-			chamberY1Logical, false, 2000+i, true);
+			chamberY1Logical, false, 20000+i, true);
 
 		new G4PVPlacement(0,
                           G4ThreeVector(0,((pitch + stripWidth)*(2*i+1) - chamberWidth)*m,0), stripX1Logical, "stripX1Physical",
-                          chamberX1Logical, false, 1000+i, true);
+                          chamberX1Logical, false, 10000+i, true);
 	}
 
 	//For para colocar las strip en cada segundo grupo de chambers
 	N = int( (chamberWidth+extra)/(stripWidth+pitch)); 
 
-	G4Box *stripY2Box = new G4Box("stripY2Box", stripWidth*m, (chamberWidth+extra)*m, chamberHeight/2*m);
+	G4Box *stripY2Box = new G4Box("stripY2Box", stripWidth*m, (chamberWidth)*m, (stripHeight)*m);
 	stripY2Logical = new G4LogicalVolume(stripY2Box, chamberMat, "stripY2Logical");
 
-        G4Box *stripX2Box = new G4Box("stripX2Box", (chamberWidth+extra)*m, stripWidth*m, chamberHeight/2*m);
+        G4Box *stripX2Box = new G4Box("stripX2Box", (chamberWidth)*m, stripWidth*m, (stripHeight)*m);
         stripX2Logical = new G4LogicalVolume(stripX2Box, chamberMat, "stripX2Logical");
  
         for(int i = 0; i<N; i++){
 		new G4PVPlacement(0,
 			G4ThreeVector(((pitch + stripWidth)*(2*i+1) - (chamberWidth+extra))*m,0,0), stripY2Logical, "stripY2Physical",
-			chamberY2Logical, false, 4000+i, true);
+			chamberY2Logical, false, 40000+i, true);
     
                 new G4PVPlacement(0,
 			G4ThreeVector(0,((pitch + stripWidth)*(2*i+1) - (chamberWidth+extra))*m,0), stripX2Logical, "stripX2Physical",
-			chamberX2Logical, false, 3000+i, true);
+			chamberX2Logical, false, 30000+i, true);
         }
 
 	//Colocar prueba de Plomo

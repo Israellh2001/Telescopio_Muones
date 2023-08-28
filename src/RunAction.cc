@@ -9,11 +9,13 @@ void RunAction::BeginOfRunAction(const G4Run*){
     man -> OpenFile("Histograma.csv");
 
     man -> CreateNtuple("Hits", "Hits");
-	man -> CreateNtupleDColumn("fEvent");
+	man -> CreateNtupleIColumn("fEvent");
+    man -> CreateNtupleIColumn("plane");
+    man -> CreateNtupleIColumn("strip");
 	man -> CreateNtupleDColumn("fX");
 	man -> CreateNtupleDColumn("fY");
     man -> CreateNtupleDColumn("fZ");
-    man -> CreateNtupleIColumn("strip");
+    man -> CreateNtupleDColumn("energy");
 	man -> FinishNtuple(0);
 
 }
