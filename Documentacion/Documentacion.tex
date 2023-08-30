@@ -9,7 +9,8 @@
     \tableofcontents
 
     \section{Introducción}
-        Este programa fue realizado para estudiar el comportamiento de los muones generados por rayos cosmicos cuando atraviesan un material en concreto. Para ello se creo una serie de \emph{Drift Chambers} con las cuales poder deducir las trayectorias de los muones y analizar los cambios al atravezar el material.
+
+	Este programa fue realizado para estudiar el comportamiento de los muones generados por rayos cosmicos cuando atraviesan un material en concreto. Para ello se creo una serie de \emph{Drift Chambers} con las cuales poder deducir las trayectorias de los muones y analizar los cambios al atravezar el material.
 
 	El simulador utiliza la serie de librerias en \verb|C++| desarrolladas en \emph{CERN}, originalmente para \verb|Fortran|, conocida como \verb|Geant4|.
 
@@ -31,7 +32,27 @@
 	\end{enumerate}
 
     \section{Clases}
-        En el programa hay muchas clases bla bla vbla
+        Las simulaciónes en \verb|Geant4| utilizan un "esqueleto" que el kernel utiliza para hacer las simulaciones. Sin embargo es importante señalar que ninguna parte de este "esqueleto" es absolutamente necesaria.
+	Para realizar el "esqueleto" de este programa se utilizan seis clases que el kernel utiliza para:
+	
+	\begin{itemize}
+		\item Crear la geometría de la simulación, esto incluye generar los materiales de los cuales estan hechos los objetos.
+		\item Describir la pistola de particulas, esto incluye que particulas se disparan, con que energía y en que dirección.
+		\item Saber que hacer con los datos que se obtienen de un evento (colisión).
+	\end{itemize}
+
+	Las clases estan relacionadas entre ellas y para que una funcione correctamente debe haber metodos "obligatorios" que se heredan de las clases en \verb|Geant4|.
+
+	Al kernel de \verb|Geant4| se inicializa en la clase principal \verb|main.cc| y aquí se indican las estrucutras de la lista de fisica, la geometria y el generador de eventos.
+
+	Las clases en el programa se conforman de dos archivos \verb|.hh| y \verb|.cc| esto se hereda de la estructura de las clases en \verb|C++|. En resumen, en los archivos \verb|.hh| se declara la estructura general de las clases así como algunos atributos y los metodos de la clase; en los archivos \verb|.cc| se escribe que hacen los metodos.
+	
+	\subsection{\verb|ActionInitializer|}
+	\subsection{\verb|DetectorConstruction|}
+	\subsection{\verb|PhysicsList|}
+	\subsection{\verb|PrimaryGeneratorAction|}
+	\subsection{\verb|RunAction|}
+	\subsection{\verb|SensitiveDetector|}
 
     \appendix
         \section{Instalación de Geant4}
