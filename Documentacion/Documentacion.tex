@@ -47,7 +47,7 @@
 
 	Las clases en el programa se conforman de dos archivos \verb|.hh| y \verb|.cc| esto se hereda de la estructura de las clases en \verb|C++|. En resumen, en los archivos \verb|.hh| se declara la estructura general de las clases así como algunos atributos y los metodos de la clase; en los archivos \verb|.cc| se escribe que hacen los metodos.
 	
-	\subsection{\verb|DetectorConstruction|}
+	\subsection{ DetectorConstruction }
 
 		Esta clase es la encargada de definir la geometría del sistema. Es la primera en cargar \verb|Geant| y es la única con la que el programa no correría. Así que si esta no esta estructurada correctamente el programa no funcionara.
 		
@@ -55,23 +55,23 @@
 
 		Para definir un objeto como sensible en la geometría tenemos que definir una clase que se encarga de generar un molde para los hits esa es la clase es la siguiente.
 
-		\subsubsection{\verb|SensitiveDetector|}
+		\subsubsection{SensitiveDetector}
 
 			En esta clase se utiliza el \verb|touchable| un objeto que genera el kernel de\verb|geant| y nos da acceso a los datos que se obtienen en un hit. Esta clase utiliza esos datos para general un molde para los hits que se obtendran de los objetos sensibles que se declararon.
 
-	\subsection{\verb|PhysicsList|}
+	\subsection{PhysicsList}
 
 		En esta clase se declaran las listas de physicas, esto es, los fenomenos que queremos medir en nuestra simulación.
 
-	\subsection{\verb|ActionInitializer|}
+	\subsection{ActionInitializer}
 		
 		Esta clase es la encargada de definir que ocurre cuando se llama a un evento en la simulación, esto incluye la pistola de particulas y como procesar los hits que estos generan al chocar con objetos que sean sensibles, esto es que esten definidos como sensores en la geometría.
 
-		\subsubsection{\verb|PrimaryGeneratorAction|}
+		\subsubsection{PrimaryGeneratorAction}
 			
 			Esta clase es la encargada de definir la pistola de particulas, aquí se definen los datos de las particulas que se disparan en cada evento como puede ser: el momento, la energía, la dirección y el punto de partida.
 
-		\subsubsection{\verb|RunAction|}
+		\subsubsection{RunAction}
 
 			Esta clase define como se procesaran los hits obtenidos. Aquí es en donde podemos obtener los datos y exportarlos a un archivo binario, csv, root, excel, etc.
 
